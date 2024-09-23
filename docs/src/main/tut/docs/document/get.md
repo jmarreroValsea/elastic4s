@@ -11,7 +11,7 @@ The get request allows us to retrieve a document from an index by id.
 First, import the ElasticDSL
 
 ```tut:silent
-import com.sksamuel.elastic4s.ElasticDsl._
+import com.dinotech.elastic4s.ElasticDsl._
 ```
 
 The format is simple.

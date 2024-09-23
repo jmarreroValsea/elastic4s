@@ -12,7 +12,7 @@ The format is simple, pass a list of get requests into the client method.
 First, import the ElasticDSL
 
 ```tut:silent
-import com.sksamuel.elastic4s.ElasticDsl._
+import com.dinotech.elastic4s.ElasticDsl._
 ```
 
 Then to issue multiple get requests we can do something like the following:

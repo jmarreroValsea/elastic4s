@@ -10,7 +10,7 @@ object Build extends AutoPlugin {
   override def requires = JvmPlugin
 
   object autoImport {
-    val org                    = "com.sksamuel.elastic4s"
+    val org                    = "com.dinotech.elastic4s"
     val AkkaVersion            = "2.5.23"
     val CatsVersion            = "2.0.0"
     val CirceVersion           = "0.12.0-M3"
@@ -64,7 +64,7 @@ object Build extends AutoPlugin {
         Some("releases" at nexus + "service/local/staging/deploy/maven2")
     },
     pomExtra :=
-      <url>https://github.com/sksamuel/elastic4s</url>
+      <url>https://github.com/dinotech/elastic4s</url>
         <licenses>
           <license>
             <name>Apache 2</name>
@@ -73,14 +73,14 @@ object Build extends AutoPlugin {
           </license>
         </licenses>
         <scm>
-          <url>git@github.com:sksamuel/elastic4s.git</url>
-          <connection>scm:git@github.com:sksamuel/elastic4s.git</connection>
+          <url>git@github.com:dinotech/elastic4s.git</url>
+          <connection>scm:git@github.com:dinotech/elastic4s.git</connection>
         </scm>
         <developers>
           <developer>
-            <id>sksamuel</id>
-            <name>sksamuel</name>
-            <url>http://github.com/sksamuel</url>
+            <id>dinotech</id>
+            <name>dinotech</name>
+            <url>http://github.com/dinotech</url>
           </developer>
         </developers>
   )

@@ -84,7 +84,7 @@ object User {
 }
 
 val user = client execute {
-  import com.sksamuel.elastic4s.ElasticDsl._
+  import com.dinotech.elastic4s.ElasticDsl._
   search in "threads" -> "users" query "username:bill"
 }
 

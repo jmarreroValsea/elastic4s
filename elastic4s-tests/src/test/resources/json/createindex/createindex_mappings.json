@@ -22,7 +22,7 @@
                 }
             },
             "_meta": {
-                "class": "com.sksamuel.User"
+                "class": "com.dinotech.User"
             }
         },
         "users": {

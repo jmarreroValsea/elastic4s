@@ -1,10 +1,10 @@
 elastic4s - Elasticsearch Scala Client
 =========
 
-[![Join the chat at https://gitter.im/sksamuel/elastic4s](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sksamuel/elastic4s?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/sksamuel/elastic4s.png?branch=master)](https://travis-ci.org/sksamuel/elastic4s)
-[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11.svg?label=latest%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)
-[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12.svg?label=latest%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)
+[![Join the chat at https://gitter.im/dinotech/elastic4s](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/dinotech/elastic4s?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/dinotech/elastic4s.png?branch=master)](https://travis-ci.org/dinotech/elastic4s)
+[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11.svg?label=latest%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)
+[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12.svg?label=latest%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)
 
 Elastic4s is a concise, idiomatic, reactive, type safe Scala client for Elasticsearch. The official Elasticsearch Java client can of course be used in Scala, but due to Java's syntax it is more verbose and it naturally doesn't support classes in the core Scala core library nor Scala idioms such as typeclass support.
 
@@ -12,7 +12,7 @@ Elastic4s's DSL allows you to construct your requests programatically, with synt
 
 Elastic4s supports Scala collections so you don't have to do tedious conversions from your Scala domain classes into Java collections. It also allows you to index and read classes directly using typeclasses so you don't have to set fields or json documents manually. These typeclasses are generated using your favourite json library - modules exist for Jackson, Circe, Json4s, PlayJson and Spray Json. The client also uses standard Scala durations to avoid the use of strings or primitives for duration lengths.
 
-Read [the full documentation](https://sksamuel.github.io/elastic4s/docs/) to learn more about elastic4s.
+Read [the full documentation](https://dinotech.github.io/elastic4s/docs/) to learn more about elastic4s.
 
 #### Key points
 
@@ -29,14 +29,14 @@ Read [the full documentation](https://sksamuel.github.io/elastic4s/docs/) to lea
 
 Elasticsearch (on the JVM) has two interfaces. One is the regular HTTP interface available on port 9200 (by default) and the other is a TCP interface on port 9300 (by default). Historically the Java API provided by Elasticsearch has always been TCP based with the rationale that it saves marshalling requests into JSON and is cluster aware and so can route requests to the correct node. Therefore elastic4s was also TCP based since it delegates requests to the underlying Java client.
 
-Starting with elastic4s 5.2.x a new [HTTP client](https://github.com/sksamuel/elastic4s/tree/master/elastic4s-http) has been added which relies on the Java REST client for connection management, but still uses the familiar elastic4s DSL to build the queries so you don't have to. As of version 5.4.x the HTTP client is now considered production ready after extensive testing on the 5.2 and 5.3 release chains.
+Starting with elastic4s 5.2.x a new [HTTP client](https://github.com/dinotech/elastic4s/tree/master/elastic4s-http) has been added which relies on the Java REST client for connection management, but still uses the familiar elastic4s DSL to build the queries so you don't have to. As of version 5.4.x the HTTP client is now considered production ready after extensive testing on the 5.2 and 5.3 release chains.
 
 Depending on which client you use, you will need to add either `elastic-http` or `elastic-tcp` dependencies to your build.
 
 #### Release
 
 Elastic4s is released for both Scala 2.11 and Scala 2.12. Scala 2.10 support has been dropped starting with the 5.0.x release train. For releases that are compatible with earlier versions of Elasticsearch,
-[search maven central](http://search.maven.org/#search|ga|1|g%3A%22com.sksamuel.elastic4s%22).
+[search maven central](http://search.maven.org/#search|ga|1|g%3A%22com.dinotech.elastic4s%22).
 For more information read [Using Elastic4s in your project](#using-elastic4s-in-your-project).
 
 Starting from version 5.0.0, the underlying Elasticsearch TCP Java client has dependencies on Netty, Lucene and others that it does not bring in transitively. The elastic4s tcp client brings in the dependencies for you, but in case anything is missed, you would need to add it to your build yourself.
@@ -45,25 +45,25 @@ The second issue is that it uses Netty 4.1. However some popular projects such a
 
 | Elasticsearch Version | Scala 2.10 | Scala 2.11 | Scala 2.12 |
 |-------|---------|---------|-----------|
-|6.5.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/6.5.svg?label=latest%206.5%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/6.5.svg?label=latest%206.5%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|6.4.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/6.4.svg?label=latest%206.4%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/6.4.svg?label=latest%206.4%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|6.3.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/6.3.svg?label=latest%206.3%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/6.3.svg?label=latest%206.3%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|6.2.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/6.2.svg?label=latest%206.2%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/6.2.svg?label=latest%206.2%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|6.1.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/6.1.svg?label=latest%206.1%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/6.1.svg?label=latest%206.1%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|6.0.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/6.0.svg?label=latest%206.0%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/6.0.svg?label=latest%206.0%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|5.6.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/5.6.svg?label=latest%205.6%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/5.6.svg?label=latest%205.6%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|5.5.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/5.5.svg?label=latest%205.5%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/5.5.svg?label=latest%205.5%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|5.4.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/5.4.svg?label=latest%205.4%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/5.4.svg?label=latest%205.4%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|5.3.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/5.3.svg?label=latest%205.3%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/5.3.svg?label=latest%205.3%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|5.2.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/5.2.svg?label=latest%205.2%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/5.2.svg?label=latest%205.2%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|5.1.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/5.1.svg?label=latest%205.1%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/5.1.svg?label=latest%205.1%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|5.0.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/5.0.svg?label=latest%205.0%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/5.0.svg?label=latest%205.0%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
-|2.4.x||[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/2.4.svg?label=latest%202.4%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
-|2.3.x|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.10/2.3.svg?label=latest%202.3%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/2.3.svg?label=latest%202.3%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
-|2.2.x|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.10/2.2.svg?label=latest%202.2%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/2.2.svg?label=latest%202.2%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
-|2.1.x|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.10/2.1.svg?label=latest%202.1%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/2.1.svg?label=latest%202.1%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
-|2.0.x|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.10/2.0.svg?label=latest%202.0%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/2.0.svg?label=latest%202.0%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
-|1.7.x|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.10/1.7.svg?label=latest%201.7%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.11/1.7.svg?label=latest%201.7%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.sksamuel.elastic4s/elastic4s-core_2.12/1.7.svg?label=latest%201.7%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|6.5.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/6.5.svg?label=latest%206.5%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/6.5.svg?label=latest%206.5%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|6.4.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/6.4.svg?label=latest%206.4%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/6.4.svg?label=latest%206.4%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|6.3.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/6.3.svg?label=latest%206.3%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/6.3.svg?label=latest%206.3%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|6.2.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/6.2.svg?label=latest%206.2%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/6.2.svg?label=latest%206.2%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|6.1.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/6.1.svg?label=latest%206.1%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/6.1.svg?label=latest%206.1%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|6.0.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/6.0.svg?label=latest%206.0%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/6.0.svg?label=latest%206.0%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|5.6.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/5.6.svg?label=latest%205.6%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/5.6.svg?label=latest%205.6%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|5.5.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/5.5.svg?label=latest%205.5%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/5.5.svg?label=latest%205.5%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|5.4.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/5.4.svg?label=latest%205.4%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/5.4.svg?label=latest%205.4%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|5.3.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/5.3.svg?label=latest%205.3%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/5.3.svg?label=latest%205.3%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|5.2.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/5.2.svg?label=latest%205.2%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/5.2.svg?label=latest%205.2%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|5.1.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/5.1.svg?label=latest%205.1%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/5.1.svg?label=latest%205.1%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|5.0.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/5.0.svg?label=latest%205.0%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/5.0.svg?label=latest%205.0%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
+|2.4.x||[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/2.4.svg?label=latest%202.4%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
+|2.3.x|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.10/2.3.svg?label=latest%202.3%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/2.3.svg?label=latest%202.3%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
+|2.2.x|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.10/2.2.svg?label=latest%202.2%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/2.2.svg?label=latest%202.2%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
+|2.1.x|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.10/2.1.svg?label=latest%202.1%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/2.1.svg?label=latest%202.1%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
+|2.0.x|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.10/2.0.svg?label=latest%202.0%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/2.0.svg?label=latest%202.0%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)||
+|1.7.x|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.10/1.7.svg?label=latest%201.7%20release%20for%202.10"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.10%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.11/1.7.svg?label=latest%201.7%20release%20for%202.11"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.11%22)|[<img src="https://img.shields.io/maven-central/v/com.dinotech.elastic4s/elastic4s-core_2.12/1.7.svg?label=latest%201.7%20release%20for%202.12"/>](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22elastic4s-core_2.12%22)|
 
 For release prior to 2.0 search maven central.
 
@@ -73,12 +73,12 @@ See full [changelog](#changelog).
 ## Quick Start
 
 We have created sample projects for http, tcp in both sbt, maven and gradle. Check them out here:
-https://github.com/sksamuel/elastic4s/tree/master/samples
+https://github.com/dinotech/elastic4s/tree/master/samples
 
 To get started you will need to add a dependency to either
 
-* [elastic4s-http](https://mvnrepository.com/artifact/com.sksamuel.elastic4s/elastic4s-http)
-* [elastic4s-tcp](https://mvnrepository.com/artifact/com.sksamuel.elastic4s/elastic4s-tcp)
+* [elastic4s-http](https://mvnrepository.com/artifact/com.dinotech.elastic4s/elastic4s-http)
+* [elastic4s-tcp](https://mvnrepository.com/artifact/com.dinotech.elastic4s/elastic4s-tcp)
 
 depending on which client you intend you use (or both).
 
@@ -101,7 +101,7 @@ search("index" / "type").query("findthistext")
 
 The DSL methods are located in the `ElasticDsl` trait which needs to be imported or extended. Although the syntax is
 identical whether you use the HTTP or TCP client, you must import the appropriate trait
-(`com.sksamuel.elastic4s.ElasticDsl` for TCP or `com.sksamuel.elastic4s.http.ElasticDsl` for HTTP) depending on which
+(`com.dinotech.elastic4s.ElasticDsl` for TCP or `com.dinotech.elastic4s.http.ElasticDsl` for HTTP) depending on which
 client you are using.
 
 ### Alternative Executors
@@ -110,13 +110,13 @@ adding appropriate imports. The imports will create an implicit `Executor[F]` an
 where `F` is some effect type.
 
 #### Cats-Effect IO
-`import com.sksamuel.elastic4s.cats.effect.instances._` will provide implicit instances for `cats.effect.IO`
+`import com.dinotech.elastic4s.cats.effect.instances._` will provide implicit instances for `cats.effect.IO`
 
 #### Monix Task
-`import com.sksamuel.elastic4s.monix.instances._` will provide implicit instances for `monix.eval.Task`
+`import com.dinotech.elastic4s.monix.instances._` will provide implicit instances for `monix.eval.Task`
 
 #### Scalaz Task
-`import com.sksamuel.elastic4s.scalaz.instances._` will provide implicit instances for `scalaz.concurrent.Task` 
+`import com.dinotech.elastic4s.scalaz.instances._` will provide implicit instances for `scalaz.concurrent.Task`
 
 ### Example SBT Setup
 
@@ -124,17 +124,17 @@ where `F` is some effect type.
 // major.minor are in sync with the elasticsearch releases
 val elastic4sVersion = "x.x.x"
 libraryDependencies ++= Seq(
-  "com.sksamuel.elastic4s" %% "elastic4s-core" % elastic4sVersion,
+  "com.dinotech.elastic4s" %% "elastic4s-core" % elastic4sVersion,
 
   // for the http client
-  "com.sksamuel.elastic4s" %% "elastic4s-http" % elastic4sVersion,
+  "com.dinotech.elastic4s" %% "elastic4s-http" % elastic4sVersion,
 
   // if you want to use reactive streams
-  "com.sksamuel.elastic4s" %% "elastic4s-http-streams" % elastic4sVersion,
+  "com.dinotech.elastic4s" %% "elastic4s-http-streams" % elastic4sVersion,
 
   // testing
-  "com.sksamuel.elastic4s" %% "elastic4s-testkit" % elastic4sVersion % "test",
-  "com.sksamuel.elastic4s" %% "elastic4s-embedded" % elastic4sVersion % "test"
+  "com.dinotech.elastic4s" %% "elastic4s-testkit" % elastic4sVersion % "test",
+  "com.dinotech.elastic4s" %% "elastic4s-embedded" % elastic4sVersion % "test"
 )
 ```
 
@@ -144,10 +144,10 @@ An example is worth 1000 characters so here is a quick example of how to connect
 index and index a one field document. Then we will search for that document using a simple text query.
 
 ```scala
-import com.sksamuel.elastic4s.RefreshPolicy
-import com.sksamuel.elastic4s.embedded.LocalNode
-import com.sksamuel.elastic4s.http.search.SearchResponse
-import com.sksamuel.elastic4s.http.{RequestFailure, RequestSuccess}
+import com.dinotech.elastic4s.RefreshPolicy
+import com.dinotech.elastic4s.embedded.LocalNode
+import com.dinotech.elastic4s.http.search.SearchResponse
+import com.dinotech.elastic4s.http.{RequestFailure, RequestSuccess}
 
 object ArtistIndex extends App {
 
@@ -159,7 +159,7 @@ object ArtistIndex extends App {
   val client = localNode.client(shutdownNodeOnClose = true)
 
   // we must import the dsl
-  import com.sksamuel.elastic4s.http.ElasticDsl._
+  import com.dinotech.elastic4s.http.ElasticDsl._
 
   // Next we create an index in advance ready to receive documents.
   // await is a helper method to make this operation synchronous instead of async
@@ -284,7 +284,7 @@ through to the readme page. For options that are not yet documented, refer to th
 | Update by query                           | `updateByQuery(index, type, query)`       | yes | yes |
 | [Validate]                                | `validateIn(<index/type>).query(<query>)` | yes | yes |
 
-Please also note [some java interoperability notes](https://sksamuel.github.io/elastic4s/docs/misc/javainterop.html).
+Please also note [some java interoperability notes](https://dinotech.github.io/elastic4s/docs/misc/javainterop.html).
 
 
 ## Connecting to a Cluster
@@ -363,7 +363,7 @@ resolvers += "elasticsearch-releases" at "https://artifacts.elastic.co/maven"
 A locally configured node and client can be created by including the elastic4s-embedded module. Then a local node can be started by invoking `LocalNode()` with the cluster name and data path. From the local node we can return a handle to the client by invoking the `client` function.
 
 ```scala
-import com.sksamuel.elastic4s.embedded.LocalNode
+import com.dinotech.elastic4s.embedded.LocalNode
 val node = LocalNode(clusterName, pathHome)
 val client = node.client(shutdownNodeOnClose = true)
 ```
@@ -405,8 +405,8 @@ or multiple other options
 To do this we add mappings:
 
 ```scala
-import com.sksamuel.elastic4s.mappings.FieldType._
-import com.sksamuel.elastic4s.analyzers.StopAnalyzer
+import com.dinotech.elastic4s.mappings.FieldType._
+import com.dinotech.elastic4s.analyzers.StopAnalyzer
 
 client.execute {
   createIndex("places") mappings (
@@ -422,14 +422,14 @@ client.execute {
 Then Elasticsearch is configured with those mappings for those fields only.
 It is still fully dynamic and other fields will be created as needed with default options. Only the fields specified will have their type preset.
 
-More examples on the create index syntax can be [found here](https://sksamuel.github.io/elastic4s/docs/indices/createindex.html).
+More examples on the create index syntax can be [found here](https://dinotech.github.io/elastic4s/docs/indices/createindex.html).
 
 ## Analyzers
 
 Analyzers control how Elasticsearch parses the fields for indexing. For example, you might decide that you want
 whitespace to be important, so that "band of brothers" is indexed as a single "word" rather than the default which is
 to split on whitespace. There are many advanced options available in analayzers. Elasticsearch also allows us to create
-custom analyzers. For more details [read about the DSL support for analyzers](https://sksamuel.github.io/elastic4s/docs/misc/analyzers.html).
+custom analyzers. For more details [read about the DSL support for analyzers](https://dinotech.github.io/elastic4s/docs/misc/analyzers.html).
 
 ## Indexing
 
@@ -485,9 +485,9 @@ Simply add the import for your chosen library below and then with those implicit
 |---------|------------------|--------|
 |[Jackson](https://github.com/FasterXML/jackson-module-scala)|[elastic4s-jackson](http://search.maven.org/#search%7Cga%7C1%7Celastic4s-jackson)|import ElasticJackson.Implicits._|
 |[Json4s](http://json4s.org/)|[elastic4s-json4s](http://search.maven.org/#search%7Cga%7C1%7Celastic4s-json4s)|import ElasticJson4s.Implicits._|
-|[Circe](https://github.com/travisbrown/circe)|[elastic4s-circe](http://search.maven.org/#search%7Cga%7C1%7Celastic4s-circe)|import io.circe.generic.auto._ <br/>import com.sksamuel.elastic4s.circe._|
-|[PlayJson](https://github.com/playframework/play-json)|[elastic4s-play-json](http://search.maven.org/#search%7Cga%7C1%7Celastic4s-play-json)|import com.sksamuel.elastic4s.playjson._|
-|[Spray Json](https://github.com/spray/spray-json)|[elastic4s-spray-json](http://search.maven.org/#search%7Cga%7C1%7Celastic4s-spray-json)|import com.sksamuel.elastic4s.sprayjson._|
+|[Circe](https://github.com/travisbrown/circe)|[elastic4s-circe](http://search.maven.org/#search%7Cga%7C1%7Celastic4s-circe)|import io.circe.generic.auto._ <br/>import com.dinotech.elastic4s.circe._|
+|[PlayJson](https://github.com/playframework/play-json)|[elastic4s-play-json](http://search.maven.org/#search%7Cga%7C1%7Celastic4s-play-json)|import com.dinotech.elastic4s.playjson._|
+|[Spray Json](https://github.com/spray/spray-json)|[elastic4s-spray-json](http://search.maven.org/#search%7Cga%7C1%7Celastic4s-spray-json)|import com.dinotech.elastic4s.sprayjson._|
 
 ## Searching
 
@@ -770,19 +770,19 @@ stream data from some publisher into elasticsearch. Or you can create an elastic
 First you have to add an additional dependency to your `build.sbt`
 
 ```scala
-libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-streams" % "x.x.x"
+libraryDependencies += "com.dinotech.elastic4s" %% "elastic4s-streams" % "x.x.x"
 ```
 
 or
 
 ```scala
-libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-http-streams" % "x.x.x"
+libraryDependencies += "com.dinotech.elastic4s" %% "elastic4s-http-streams" % "x.x.x"
 ```
 
 Import the new API with
 
 ```scala
-import com.sksamuel.elastic4s.streams.ReactiveElastic._
+import com.dinotech.elastic4s.streams.ReactiveElastic._
 ```
 
 ### Publisher
@@ -848,26 +848,26 @@ publisher.subscribe(subscriber)
 For gradle users, add (replace 2.12 with 2.11 for Scala 2.11):
 
 ```groovy
-compile 'com.sksamuel.elastic4s:elastic4s-core_2.12:x.x.x'
+compile 'com.dinotech.elastic4s:elastic4s-core_2.12:x.x.x'
 ```
 
 For SBT users simply add:
 
 ```scala
-libraryDependencies += "com.sksamuel.elastic4s" %% "elastic4s-core" % "x.x.x"
+libraryDependencies += "com.dinotech.elastic4s" %% "elastic4s-core" % "x.x.x"
 ```
 
 For Maven users simply add (replace 2.12 with 2.11 for Scala 2.11):
 
 ```xml
 <dependency>
-    <groupId>com.sksamuel.elastic4s</groupId>
+    <groupId>com.dinotech.elastic4s</groupId>
     <artifactId>elastic4s-core_2.12</artifactId>
     <version>x.x.x</version>
 </dependency>
 ```
 
-Check for the latest released versions on [maven central](http://search.maven.org/#search|ga|1|g%3A%22com.sksamuel.elastic4s%22)
+Check for the latest released versions on [maven central](http://search.maven.org/#search|ga|1|g%3A%22com.dinotech.elastic4s%22)
 
 ## Building and Testing
 
@@ -1433,26 +1433,26 @@ License for the specific language governing permissions and limitations under
 the License.
 ```
 
-[Add Alias]: https://sksamuel.github.io/elastic4s/docs/indices/aliases.html
-[Bulk]: https://sksamuel.github.io/elastic4s/docs/document/bulk.html
-[Create Index]: https://sksamuel.github.io/elastic4s/docs/indices/createindex.html
-[Create Repository]: https://sksamuel.github.io/elastic4s/docs/misc/snapshot.html
-[Create Snapshot]: https://sksamuel.github.io/elastic4s/docs/misc/snapshot.html
-[Delete by id]: https://sksamuel.github.io/elastic4s/docs/document/delete.html
-[Delete index]: https://sksamuel.github.io/elastic4s/docs/document/delete.html
-[Delete index]: https://sksamuel.github.io/elastic4s/docs/document/delete.html
-[delete page]: https://sksamuel.github.io/elastic4s/docs/document/delete.html
-[Delete Snapshot]: https://sksamuel.github.io/elastic4s/docs/misc/snapshot.html
-[Explain]: https://sksamuel.github.io/elastic4s/docs/search/explain.html
-[Get]: https://sksamuel.github.io/elastic4s/docs/document/get.html
-[get examples]: https://sksamuel.github.io/elastic4s/docs/document/get.html
-[Index]: https://sksamuel.github.io/elastic4s/docs/document/index.html
-[Multiget]: https://sksamuel.github.io/elastic4s/docs/document/multiget.html
-[Multisearch]: https://sksamuel.github.io/elastic4s/docs/search/multisearch.html
-[Force Merge]: https://sksamuel.github.io/elastic4s/docs/indices/optimize.html
-[Remove Alias]: https://sksamuel.github.io/elastic4s/docs/indices/aliases.html
-[Restore Snapshot]: https://sksamuel.github.io/elastic4s/docs/misc/snapshot.html
-[Search]: https://sksamuel.github.io/elastic4s/docs/search/search.html
-[Suggestions]: https://sksamuel.github.io/elastic4s/docs/search/suggestions.html
-[Update]: https://sksamuel.github.io/elastic4s/docs/document/update.html
-[Validate]: https://sksamuel.github.io/elastic4s/docs/search/validate.html
+[Add Alias]: https://dinotech.github.io/elastic4s/docs/indices/aliases.html
+[Bulk]: https://dinotech.github.io/elastic4s/docs/document/bulk.html
+[Create Index]: https://dinotech.github.io/elastic4s/docs/indices/createindex.html
+[Create Repository]: https://dinotech.github.io/elastic4s/docs/misc/snapshot.html
+[Create Snapshot]: https://dinotech.github.io/elastic4s/docs/misc/snapshot.html
+[Delete by id]: https://dinotech.github.io/elastic4s/docs/document/delete.html
+[Delete index]: https://dinotech.github.io/elastic4s/docs/document/delete.html
+[Delete index]: https://dinotech.github.io/elastic4s/docs/document/delete.html
+[delete page]: https://dinotech.github.io/elastic4s/docs/document/delete.html
+[Delete Snapshot]: https://dinotech.github.io/elastic4s/docs/misc/snapshot.html
+[Explain]: https://dinotech.github.io/elastic4s/docs/search/explain.html
+[Get]: https://dinotech.github.io/elastic4s/docs/document/get.html
+[get examples]: https://dinotech.github.io/elastic4s/docs/document/get.html
+[Index]: https://dinotech.github.io/elastic4s/docs/document/index.html
+[Multiget]: https://dinotech.github.io/elastic4s/docs/document/multiget.html
+[Multisearch]: https://dinotech.github.io/elastic4s/docs/search/multisearch.html
+[Force Merge]: https://dinotech.github.io/elastic4s/docs/indices/optimize.html
+[Remove Alias]: https://dinotech.github.io/elastic4s/docs/indices/aliases.html
+[Restore Snapshot]: https://dinotech.github.io/elastic4s/docs/misc/snapshot.html
+[Search]: https://dinotech.github.io/elastic4s/docs/search/search.html
+[Suggestions]: https://dinotech.github.io/elastic4s/docs/search/suggestions.html
+[Update]: https://dinotech.github.io/elastic4s/docs/document/update.html
+[Validate]: https://dinotech.github.io/elastic4s/docs/search/validate.html
